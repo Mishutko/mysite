@@ -1,7 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mishu
- * Date: 26.02.2017
- * Time: 0:05
- */
+
+
+$arr = [
+    'name'=>'Вася',
+    'age'=>26,
+    'City'=>'Luga'
+];
+
+function func($arg)
+{
+    echo '<pre>';
+    print_r($arg);
+
+    echo '<pre>';
+}
+
+func($arr);
