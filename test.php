@@ -1,48 +1,60 @@
 <?php
 
-//Задание №1 Функция должна принимать массив строк и выводить каждую строку в отдельном параграфе.
 
-
-function getArr($arg)
+//Проверяем какой тип аргументов передается и сверяем с требуемым
+function checkArg($arg, $type)
 {
-    if(gettype($arg) != 'array')
+    if (gettype($arg) != $type)
     {
-        die('вы передали в функцию не массив');
+        die('Вы передали в функцию аргумент не того типа');
     }
     else
     {
-        echo "вы передали в функцию массив".'<br>';
-
-        static $i = 0;
-
-        foreach ($arg as $val)
-        {
-            if(gettype($val) == 'string')
-            {
-                $i+=1;
-            }
-            else
-            {
-                die('массив должен содержать только строки - '.$val.' не является строкой');
-            }
-
-        }
-
-        if($i == count($arg))
-        {
-            foreach ($arg as $val)
-            {
-                echo '<p>'.$val.'</p>';
-            }
-
-        }
-
-
+        echo "Вы передали в функцию аргумент типа - $type" . '<br>';
+        return true;
     }
 }
 
-$arr = Array('Петя', 'BMW', 'Ostrov','Lolwhat');
-getArr($arr);
+//Проверяем тип данных в массиве
+function checkArrayInSide($arg, $type)
+{
+    static $i = 0;
+    foreach ($arg as $val)
+    {
+        if (gettype($val) == $type)
+        {
+            $i++;
+        }
+        else
+        {
+            die('Массив должен содержать только  - ' . $type);
+        }
+    }
+    return $i;
+}
+
+
+//Задание №1 Функция должна принимать массив строк и выводить каждую строку в отдельном параграфе.
+
+
+function homeTask1($arg)
+{
+    if (checkArg($arg, 'array'))
+    {
+        if (checkArrayInSide($arg, 'string') == count($arg))
+        {
+            foreach ($arg as $val)
+            {
+                echo '<p>' . $val . '</p>';
+            }
+
+        }
+    }
+
+}
+
+$arr = Array('Петя', 'BMW', 'Ostrov', 'Lolwhat');
+homeTask1($arr);
 
 
 
