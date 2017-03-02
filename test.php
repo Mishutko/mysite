@@ -33,6 +33,22 @@ function checkArrayInSide($arg, $type)
     return $i;
 }
 
+//Проверяет, было ли передано правильное арефметическое действие
+function checkMathChar($cha)
+{
+    switch ($cha)
+    {
+        case '-':
+        case '+':
+        case '/':
+        case '*':
+            return true;
+            break;
+        default:
+            die ('Нет такого врефмитического действия, введите правильное (-, +, /, *)');
+    }
+}
+
 
 //Задание №1 Функция должна принимать массив строк и выводить каждую строку в отдельном параграфе.
 
@@ -72,31 +88,42 @@ $myArr = [1, 2, 3, 4];
 
 function homeTask2($arg, $cha)
 {
-    if (checkArg($arg, 'array'))
+    if (checkArg($arg, 'array') && checkMathChar($cha))
     {
         if (checkArrayInSide($arg, 'integer') == count($arg))
         {
-            $x = 0;
-            foreach ($arg as $val)
-            {
-                switch ($cha)
-                {
-                    case '-':
-                        $x = $x - $val;
-                        break;
 
-                    case '+':
-                        $x = $x + $val;
-                        break;
-                    case '/':
-                        $x = $x / $val;
-                        break;
-                    case '*':
-                        $x = $x * $val;
-                        break;
+            $x = 0;
+            foreach ($arg as $ar => $val)
+            {
+                if ($ar == 0)
+                {
+                    $x = $val;
+                    continue;
+                }
+                else
+                {
+                    switch ($cha)
+                    {
+                        case '-':
+                            $x = $x - $val;
+                            break;
+
+                        case '+':
+                            $x = $x + $val;
+                            break;
+                        case '/':
+                            $x = $x / $val;
+                            break;
+                        case '*':
+                            $x = $x * $val;
+                            break;
+                        default:
+                            die ('Нет такого врефмитического действия, введите правильное (-, +, /, *)');
+                    }
                 }
             }
-            echo join($cha, $arg).'='.$x;
+            echo join($cha, $arg) . '=' . $x;
         }
     }
 }
