@@ -36,27 +36,25 @@ function checkArrayInSide($arg, $type)
 
 //Задание №1 Функция должна принимать массив строк и выводить каждую строку в отдельном параграфе.
 
-
-function homeTask1($arg)
-{
-    if (checkArg($arg, 'array'))
-    {
-        if (checkArrayInSide($arg, 'string') == count($arg))
-        {
-            foreach ($arg as $val)
-            {
-                echo '<p>' . $val . '</p>';
-            }
-
-        }
-    }
-
-}
-
-$arr = Array('Петя', 'BMW', 'Ostrov', 'Lolwhat');
-homeTask1($arr);
-
-
+//
+//function homeTask1($arg)
+//{
+//    if (checkArg($arg, 'array'))
+//    {
+//        if (checkArrayInSide($arg, 'string') == count($arg))
+//        {
+//            foreach ($arg as $val)
+//            {
+//                echo '<p>' . $val . '</p>';
+//            }
+//
+//        }
+//    }
+//
+//}
+//
+//$arr = Array('Петя', 'BMW', 'Ostrov', 'Lolwhat');
+//homeTask1($arr);
 
 
 //_____________________________________________________________________________________________________________
@@ -67,17 +65,43 @@ homeTask1($arr);
 // б) строку, обозначающую арифметическое действие, которое нужно выполнить со всеми элементами массива.
 // Функция должна вывести результат.
 // Например: имя функции someFunction(array(1,2,3,4), ‘ – ’)
-// Результат: 1 – 2 – 3 – 4 = 8
+// Результат: 1 – 2 – 3 – 4 = -8
 
 
-//$myArr = [2, 3, 4, 1, 112, 7, 4, 11, 97];
-//
-//function func($arrInt, $cha)
-//{
-//    echo join($cha,$arrInt);
-//}
-//
-//func($myArr, "-");
+$myArr = [1, 2, 3, 4];
+
+function homeTask2($arg, $cha)
+{
+    if (checkArg($arg, 'array'))
+    {
+        if (checkArrayInSide($arg, 'integer') == count($arg))
+        {
+            $x = 0;
+            foreach ($arg as $val)
+            {
+                switch ($cha)
+                {
+                    case '-':
+                        $x = $x - $val;
+                        break;
+
+                    case '+':
+                        $x = $x + $val;
+                        break;
+                    case '/':
+                        $x = $x / $val;
+                        break;
+                    case '*':
+                        $x = $x * $val;
+                        break;
+                }
+            }
+            echo join($cha, $arg).'='.$x;
+        }
+    }
+}
+
+homeTask2($myArr, '-');
 
 
 //______________________________________________________________________________________________________________
