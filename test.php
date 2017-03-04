@@ -10,7 +10,6 @@ function checkArg($arg, $type)
     }
     else
     {
-        echo "Вы передали в функцию аргумент типа - $type" . '<br>';
         return true;
     }
 }
@@ -142,51 +141,107 @@ function checkMathChar($cha)
 // Например: имя функции someFunction(‘+’, 1, 2, 3, 5.2);
 // Результат: 1 + 2 + 3 + 5.2 = 11.2
 //
+//
+//function homeTask3()
+//{
+//    if (checkArg(func_get_args(), "array"))
+//    {
+//        $myArr = func_get_args();
+//        if (checkMathChar(func_get_arg(0)))
+//        {
+//            unset($myArr[0]);
+//            if (checkArrayInSide($myArr, 'integer', 'double'))
+//            {
+//                $x = 0;
+//                foreach ($myArr as $ar => $val)
+//                {
+//                    if ($ar == 0)
+//                    {
+//                        $x = $val;
+//                        continue;
+//                    }
+//                    else
+//                    {
+//                        switch (func_get_arg(0))
+//                        {
+//                            case '-':
+//                                $x = $x - $val;
+//                                break;
+//
+//                            case '+':
+//                                $x = $x + $val;
+//                                break;
+//                            case '/':
+//                                $x = $x / $val;
+//                                break;
+//                            case '*':
+//                                $x = $x * $val;
+//                                break;
+//                            default:
+//                                die ('Нет такого врефмитического действия, введите правильное (-, +, /, *)');
+//                        }
+//                    }
+//                }
+//                echo join(func_get_arg(0), $myArr) . '=' . $x;
+//            }
+//        }
+//    }
+//}
+//
+//homeTask3('+', 1, 2, 3, 5.2);
 
-function homeTask3()
+/*
+Задание №4
+Функция должна принимать два параметра – целые числа.
+Если в функцию переданы не целые числа, то функция должна выводить ошибку на экран и завершать работу
+в функцию передали 2 целых числа, то функция должна отобразить таблицу умножения размером со значения параметров, переданных в функцию.
+Например: tabl(4,3), то функция должна нарисовать следующий результат:
+1 2 3 4
+2 4 6 8
+3 6 9 12
+*/
+
+function homeTask4($arg1, $arg2)
 {
-    if (checkArg(func_get_args(), "array"))
+    if (checkArg($arg1, 'integer') && checkArg($arg1, 'integer'))
     {
-        $myArr = func_get_args();
-        if (checkMathChar(func_get_arg(0)))
+        for ($i = 1; $i <= $arg2; $i++)
         {
-            unset($myArr[0]);
-            if (checkArrayInSide($myArr, 'integer', 'double'))
+            for ($i2 = 1; $i2 <= $arg1; $i2++)
             {
-                $x = 0;
-                foreach ($myArr as $ar => $val)
-                {
-                    if ($ar == 0)
-                    {
-                        $x = $val;
-                        continue;
-                    }
-                    else
-                    {
-                        switch (func_get_arg(0))
-                        {
-                            case '-':
-                                $x = $x - $val;
-                                break;
+                echo $i * $i2;
 
-                            case '+':
-                                $x = $x + $val;
-                                break;
-                            case '/':
-                                $x = $x / $val;
-                                break;
-                            case '*':
-                                $x = $x * $val;
-                                break;
-                            default:
-                                die ('Нет такого врефмитического действия, введите правильное (-, +, /, *)');
-                        }
-                    }
+                if ($i2 == $arg1)
+                {
+                    echo "<br>";
                 }
-                echo join(func_get_arg(0), $myArr) . '=' . $x;
+
+
             }
         }
     }
+    else
+    {
+        die('Error');
+    }
 }
-homeTask3('+', 1, 2, 3, 5.2);
+
+homeTask4(4, 3);
+//
+//Задание №5
+//Функция должна принимать в качестве аргумента массив чисел и возвращать так же массив, но отсортированный по возрастанию.
+//Пример: В функцию передали [1, 22, 5, 66, 3, 57]. Вернула: [1, 3, 5, 22, 57, 66]
+
+function homeTask5($arg)
+{
+    if (checkArg($arg, 'array'))
+    {
+        sort($arg);
+        return $arg;
+    }
+}
+
+$arrTsk5 = [1, 22, 5, 66, 3, 57];
+homeTask5($arrTsk5);
+print_r(homeTask5($arrTsk5));
 
